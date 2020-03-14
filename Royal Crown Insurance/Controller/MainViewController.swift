@@ -23,14 +23,20 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
     }
     override func viewDidAppear(_ animated: Bool) {
         collectionView.dataSource = self
         collectionView.delegate  = self
+        
         let mainLogo = UIImage(named: "main_logo")
         let mainLogoView = UIImageView(image: mainLogo)
         mainLogoView.contentMode = .scaleAspectFit
         self.navigationItem.titleView = mainLogoView
+        
+        self.navigationController?.navigationBar.backIndicatorImage = UIImage(named: "back_icon")
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "back_icon")
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
     }
 }
 
@@ -58,6 +64,11 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         case "SERVICES":
             self.performSegue(withIdentifier: "showServicesVC", sender: nil)
         case "ABOUT":
+//            guard let storyboard = self.storyboard else {return}
+//            let aboutVC = storyboard.instantiateViewController(withIdentifier: "showAboutVC")
+//            if let _ = aboutVC as? AboutViewController{
+//            self.navigationController?.pushViewController(aboutVC, animated: true)
+//            }
             self.performSegue(withIdentifier: "showAboutVC", sender: nil)
         case "QUESTIONNARIES":
             self.performSegue(withIdentifier: "showQuestionnariesVC", sender: nil)

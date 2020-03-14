@@ -11,12 +11,12 @@
         <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="Royal_Crown" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="MainViewController" customModule="Royal_Crown" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sWk-ML-gVT">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sWk-ML-gVT">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UIM-Ml-EWo">
@@ -85,14 +85,14 @@
         <!--About View Controller-->
         <scene sceneID="ef3-w9-mkz">
             <objects>
-                <viewController id="f53-ko-NFQ" customClass="AboutViewController" customModule="Royal_Crown" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="f53-ko-NFQ" customClass="AboutViewController" customModule="Royal_Crown" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="p4R-xi-oq9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Jvn-ix-KE2">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Jvn-ix-KE2">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7KW-pk-vn5">
                                     <size key="itemSize" width="214" height="203"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -100,16 +100,15 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="363-jl-pPV" customClass="MenuCollectionViewCell" customModule="Royal_Crown" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="menuCelll" id="363-jl-pPV" customClass="MenuCollectionViewCell" customModule="Royal_Crown" customModuleProvider="target">
                                         <rect key="frame" x="100" y="0.0" width="214" height="203"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="EZW-rU-nci">
                                             <rect key="frame" x="0.0" y="0.0" width="214" height="203"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1jr-Jw-Kto">
-                                                    <rect key="frame" x="0.0" y="8" width="206" height="181"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" semanticContentAttribute="playback" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1jr-Jw-Kto">
+                                                    <rect key="frame" x="0.0" y="0.0" width="214" height="203"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3He-Rb-QI4">
                                                     <rect key="frame" x="80" y="88.5" width="54" height="26"/>
@@ -119,7 +118,11 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="1jr-Jw-Kto" secondAttribute="trailing" id="4Ij-BI-75M"/>
                                                 <constraint firstItem="3He-Rb-QI4" firstAttribute="centerX" secondItem="EZW-rU-nci" secondAttribute="centerX" id="8nQ-Ky-XPs"/>
+                                                <constraint firstItem="1jr-Jw-Kto" firstAttribute="top" secondItem="EZW-rU-nci" secondAttribute="top" id="JZr-Da-NtA"/>
+                                                <constraint firstAttribute="bottom" secondItem="1jr-Jw-Kto" secondAttribute="bottom" id="MUq-5F-pr5"/>
+                                                <constraint firstItem="1jr-Jw-Kto" firstAttribute="leading" secondItem="EZW-rU-nci" secondAttribute="leading" id="Qy8-GR-D8R"/>
                                                 <constraint firstItem="3He-Rb-QI4" firstAttribute="centerY" secondItem="EZW-rU-nci" secondAttribute="centerY" id="RjK-ZM-aau"/>
                                             </constraints>
                                         </collectionViewCellContentView>
@@ -134,10 +137,10 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="48a-5a-eJD" firstAttribute="trailing" secondItem="Jvn-ix-KE2" secondAttribute="trailing" id="6AD-m5-8ds"/>
-                            <constraint firstItem="Jvn-ix-KE2" firstAttribute="top" secondItem="48a-5a-eJD" secondAttribute="top" id="Fig-1g-Cf0"/>
-                            <constraint firstItem="Jvn-ix-KE2" firstAttribute="leading" secondItem="48a-5a-eJD" secondAttribute="leading" id="N8b-Jv-S57"/>
-                            <constraint firstItem="48a-5a-eJD" firstAttribute="bottom" secondItem="Jvn-ix-KE2" secondAttribute="bottom" id="yma-Vb-4fq"/>
+                            <constraint firstItem="Jvn-ix-KE2" firstAttribute="bottom" secondItem="48a-5a-eJD" secondAttribute="bottom" id="NJH-uY-EIY"/>
+                            <constraint firstItem="Jvn-ix-KE2" firstAttribute="trailing" secondItem="48a-5a-eJD" secondAttribute="trailing" id="NoC-vW-Gnj"/>
+                            <constraint firstItem="Jvn-ix-KE2" firstAttribute="leading" secondItem="48a-5a-eJD" secondAttribute="leading" id="qWf-kz-EkK"/>
+                            <constraint firstItem="Jvn-ix-KE2" firstAttribute="top" secondItem="48a-5a-eJD" secondAttribute="top" id="wQT-GH-SAh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="48a-5a-eJD"/>
                     </view>
@@ -158,6 +161,13 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5tO-c7-f9H">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.18823529410000001" green="0.16862745100000001" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.18823529410000001" green="0.16862745100000001" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" red="0.18823529410000001" green="0.16862745100000001" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

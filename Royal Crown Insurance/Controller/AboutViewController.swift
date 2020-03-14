@@ -20,16 +20,35 @@ class AboutViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        collectionView.dataSource = self
+        collectionView.delegate  = self
+        self.navigationItem.title = "About"
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 48/255.0,
+                                                           green: 43/255.0,
+                                                           blue: 128/255.0,
+                                                           alpha: 1.0)
+
+        let backButton = UIBarButtonItem(image: UIImage(named :"red_logo_icon"), style: .plain, target: self, action: #selector(backToRoot))
+        backButton.tintColor = .red
+        navigationItem.rightBarButtonItem = backButton
+    }
+
+    @objc func backToRoot(){
+        navigationController?.popToRootViewController(animated: true)
     }
 }
 
 extension AboutViewController: UICollectionViewDataSource, UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        itemMenuArray.count
+        return itemMenuArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCell", for: indexPath) as? MenuCollectionViewCell{
+        if let itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCelll", for: indexPath) as? MenuCollectionViewCell{
             itemCell.nameLabel.text = itemMenuArray[indexPath.row].name
             itemCell.imageView.image = itemMenuArray[indexPath.row].image
             return itemCell
@@ -39,7 +58,7 @@ extension AboutViewController: UICollectionViewDataSource, UICollectionViewDeleg
 }
 extension AboutViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 200)
+        return CGSize(width: collectionView.frame.width, height: 190)
     }
 }
 
