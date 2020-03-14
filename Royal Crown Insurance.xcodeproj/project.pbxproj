@@ -20,6 +20,9 @@
 		44497729241BD48B009AB2D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44497727241BD48B009AB2D8 /* Main.storyboard */; };
 		4449772B241BD48F009AB2D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4449772A241BD48F009AB2D8 /* Assets.xcassets */; };
 		4449772E241BD48F009AB2D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4449772C241BD48F009AB2D8 /* LaunchScreen.storyboard */; };
+		4456DCBE241D65FA0040074C /* ReportAnAccidentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4456DCBD241D65FA0040074C /* ReportAnAccidentViewController.swift */; };
+		4456DCC0241D66130040074C /* MakeACallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4456DCBF241D66130040074C /* MakeACallViewController.swift */; };
+		4456DCC2241D66300040074C /* AboutRoyalAssistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4456DCC1241D66300040074C /* AboutRoyalAssistViewController.swift */; };
 		445B3C8E241D0C1900FBC53A /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445B3C8D241D0C1900FBC53A /* AboutViewController.swift */; };
 		448A4585241C38C000AC66A8 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448A4584241C38C000AC66A8 /* Menu.swift */; };
 /* End PBXBuildFile section */
@@ -40,6 +43,9 @@
 		4449772A241BD48F009AB2D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4449772D241BD48F009AB2D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4449772F241BD48F009AB2D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4456DCBD241D65FA0040074C /* ReportAnAccidentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportAnAccidentViewController.swift; sourceTree = "<group>"; };
+		4456DCBF241D66130040074C /* MakeACallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeACallViewController.swift; sourceTree = "<group>"; };
+		4456DCC1241D66300040074C /* AboutRoyalAssistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutRoyalAssistViewController.swift; sourceTree = "<group>"; };
 		445B3C8D241D0C1900FBC53A /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		448A4584241C38C000AC66A8 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,12 +72,13 @@
 		443DE4B1241C327A004EB5F1 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4436385E241D4514002379C6 /* RoyalAssistViewController.swift */,
+				4456DCBC241D65B90040074C /* Royal Assist */,
 				4436386E241D4B6C002379C6 /* CustomNavigationBarVC.swift */,
 				4436386A241D4645002379C6 /* ServicesViewController.swift */,
 				44363868241D4610002379C6 /* QuestionnariesViewController.swift */,
 				44363860241D4536002379C6 /* RoyalPaymentViewController.swift */,
 				44497725241BD48B009AB2D8 /* MainViewController.swift */,
-				4436385E241D4514002379C6 /* RoyalAssistViewController.swift */,
 				445B3C8D241D0C1900FBC53A /* AboutViewController.swift */,
 				44363862241D4559002379C6 /* WhatToDoIfViewController.swift */,
 			);
@@ -116,6 +123,16 @@
 				4449772F241BD48F009AB2D8 /* Info.plist */,
 			);
 			path = "Royal Crown Insurance";
+			sourceTree = "<group>";
+		};
+		4456DCBC241D65B90040074C /* Royal Assist */ = {
+			isa = PBXGroup;
+			children = (
+				4456DCBD241D65FA0040074C /* ReportAnAccidentViewController.swift */,
+				4456DCBF241D66130040074C /* MakeACallViewController.swift */,
+				4456DCC1241D66300040074C /* AboutRoyalAssistViewController.swift */,
+			);
+			path = "Royal Assist";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,8 +217,11 @@
 				443DE4B3241C333C004EB5F1 /* MenuCollectionViewCell.swift in Sources */,
 				44363869241D4610002379C6 /* QuestionnariesViewController.swift in Sources */,
 				44363861241D4536002379C6 /* RoyalPaymentViewController.swift in Sources */,
+				4456DCC2241D66300040074C /* AboutRoyalAssistViewController.swift in Sources */,
 				4436386B241D4645002379C6 /* ServicesViewController.swift in Sources */,
 				4436385F241D4514002379C6 /* RoyalAssistViewController.swift in Sources */,
+				4456DCC0241D66130040074C /* MakeACallViewController.swift in Sources */,
+				4456DCBE241D65FA0040074C /* ReportAnAccidentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
