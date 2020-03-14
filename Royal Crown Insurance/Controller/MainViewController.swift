@@ -20,30 +20,17 @@ class MainViewController: UIViewController {
         Menu(name: "ABOUT",imageName: "about_image"),
         Menu(name: "QUESTIONNARIES",imageName: "questionnaries_image")
     ]
-    /*{
-        var blankMenu1 = Menu(name: "ROYAL ASSITS",imageName: "royal_assist_image")
-        var blankMenu2 = Menu(name: "ROYAL PAYMENT",imageName: "royal_payment_image")
-        var blankMenu3 = Menu(name: "SERVICES",imageName: "services_image")
-        var blankMenu4 = Menu(name: "WHAT TO DO IF",imageName: "what_to_do_if_image")
-        var blankMenu5 = Menu(name: "ABOUT",imageName: "about_image")
-        var blankMenu6 = Menu(name: "QUESTIONNARIES",imageName: "questionnaries_image")
-        return [blankMenu1,blankMenu2,blankMenu3,blankMenu4,blankMenu5,blankMenu6]
-    }()
- */
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    }
+    override func viewDidAppear(_ animated: Bool) {
         collectionView.dataSource = self
         collectionView.delegate  = self
-        
         let mainLogo = UIImage(named: "main_logo")
         let mainLogoView = UIImageView(image: mainLogo)
         mainLogoView.contentMode = .scaleAspectFit
         self.navigationItem.titleView = mainLogoView
-        // Do any additional setup after loading the view.
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        
     }
 }
 
@@ -51,27 +38,41 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return itemMenuArray.count
     }
-    
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCell", for: indexPath) as? MenuCollectionViewCell{
             itemCell.nameLabel.text = itemMenuArray[indexPath.row].name
             itemCell.imageView.image = itemMenuArray[indexPath.row].image
-            
             return itemCell
         }
-          return UICollectionViewCell()
-        
+        return UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch itemMenuArray[indexPath.row].name {
+        case "ROYAL ASSITS":
+            self.performSegue(withIdentifier: "showRoyalAssistVC", sender: nil)
+        case "ROYAL PAYMENT":
+            self.performSegue(withIdentifier: "showRoyalPaymentVC", sender: nil)
+        case "WHAT TO DO IF":
+            self.performSegue(withIdentifier: "showWhatToDoIfVC", sender: nil)
+        case "SERVICES":
+            self.performSegue(withIdentifier: "showServicesVC", sender: nil)
+        case "ABOUT":
+            self.performSegue(withIdentifier: "showAboutVC", sender: nil)
+        case "QUESTIONNARIES":
+            self.performSegue(withIdentifier: "showQuestionnariesVC", sender: nil)
+        default:
+            return
+        }
     }
     
 }
+
 extension MainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if (indexPath.item + 1) % 3 == 0{
             return CGSize(width: collectionView.frame.width, height: 180)
         }
-        
         return CGSize(width: (collectionView.frame.width/2) - 5, height: 200)
     }
-    
 }
