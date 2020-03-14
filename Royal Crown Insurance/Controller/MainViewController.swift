@@ -15,8 +15,8 @@ class MainViewController: UIViewController {
     let itemMenuArray: [Menu] = [
         Menu(name: "ROYAL ASSITS",imageName: "royal_assist_image"),
         Menu(name: "ROYAL PAYMENT",imageName: "royal_payment_image"),
-        Menu(name: "SERVICES",imageName: "services_image"),
         Menu(name: "WHAT TO DO IF",imageName: "what_to_do_if_image"),
+        Menu(name: "SERVICES",imageName: "services_image"),
         Menu(name: "ABOUT",imageName: "about_image"),
         Menu(name: "QUESTIONNARIES",imageName: "questionnaries_image")
     ]
@@ -55,11 +55,23 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCell", for: indexPath) as? MenuCollectionViewCell{
-            itemCell.menu = itemMenuArray[indexPath.row]
+            itemCell.nameLabel.text = itemMenuArray[indexPath.row].name
+            itemCell.imageView.image = itemMenuArray[indexPath.row].image
+            
             return itemCell
         }
-        return UICollectionViewCell()
+          return UICollectionViewCell()
+        
     }
     
-     
+}
+extension MainViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if (indexPath.item + 1) % 3 == 0{
+            return CGSize(width: collectionView.frame.width, height: 180)
+        }
+        
+        return CGSize(width: (collectionView.frame.width/2) - 5, height: 200)
+    }
+    
 }
