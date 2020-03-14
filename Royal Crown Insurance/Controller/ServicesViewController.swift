@@ -1,5 +1,5 @@
 //
-//  AboutViewController.swift
+//  ServicesViewController.swift
 //  Royal Crown Insurance
 //
 //  Created by MineDest on 3/14/20.
@@ -8,29 +8,26 @@
 
 import UIKit
 
-class AboutViewController: CustomNavigationBarVC {
-
+class ServicesViewController: CustomNavigationBarVC {
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     let itemMenuArray: [Menu] = [
-        Menu(name: "ABOUT US",imageName: "about_us_image"),
-        Menu(name: "BRANCHES",imageName: "brances_image"),
-        Menu(name: "E-NSURED",imageName: "ensured_image")
+        Menu(name: "BUSINESS",imageName: "business_image"),
+        Menu(name: "PERSONALL",imageName: "personal_image"),
     ]
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         collectionView.dataSource = self
         collectionView.delegate  = self
-        self.navigationItem.title = "About"
+        self.navigationItem.title = "Servicess"
     }
 }
-
-extension AboutViewController: UICollectionViewDataSource, UICollectionViewDelegate{
+extension ServicesViewController: UICollectionViewDataSource, UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return itemMenuArray.count
     }
@@ -44,9 +41,10 @@ extension AboutViewController: UICollectionViewDataSource, UICollectionViewDeleg
         return UICollectionViewCell()
     }
 }
-extension AboutViewController: UICollectionViewDelegateFlowLayout {
+
+extension ServicesViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 190)
+        return CGSize(width: collectionView.frame.width, height: (collectionView.frame.height/2) - 5)
     }
 }
 

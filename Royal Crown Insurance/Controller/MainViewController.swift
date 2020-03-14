@@ -38,6 +38,9 @@ class MainViewController: UIViewController {
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "back_icon")
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
     }
+    @objc func backToRoot(){
+        navigationController?.popToRootViewController(animated: true)
+    }
 }
 
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate{
@@ -64,11 +67,6 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         case "SERVICES":
             self.performSegue(withIdentifier: "showServicesVC", sender: nil)
         case "ABOUT":
-//            guard let storyboard = self.storyboard else {return}
-//            let aboutVC = storyboard.instantiateViewController(withIdentifier: "showAboutVC")
-//            if let _ = aboutVC as? AboutViewController{
-//            self.navigationController?.pushViewController(aboutVC, animated: true)
-//            }
             self.performSegue(withIdentifier: "showAboutVC", sender: nil)
         case "QUESTIONNARIES":
             self.performSegue(withIdentifier: "showQuestionnariesVC", sender: nil)
