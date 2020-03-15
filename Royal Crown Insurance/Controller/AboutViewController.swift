@@ -43,6 +43,14 @@ extension AboutViewController: UICollectionViewDataSource, UICollectionViewDeleg
         }
         return UICollectionViewCell()
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch itemMenuArray[indexPath.row].name {
+        case "ABOUT US":
+            self.performSegue(withIdentifier: "aboutUsVC", sender: nil)
+        default:
+            return
+        }
+    }
 }
 extension AboutViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

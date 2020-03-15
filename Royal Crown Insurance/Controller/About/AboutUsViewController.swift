@@ -1,21 +1,22 @@
 //
-//  AboutRoyalAssistViewController.swift
+//  AboutUsViewController.swift
 //  Royal Crown Insurance
 //
-//  Created by MineDest on 3/14/20.
+//  Created by MineDest on 3/15/20.
 //  Copyright © 2020 MineDest. All rights reserved.
 //
 
 import UIKit
 import WebKit
 
-class AboutRoyalAssistViewController: CustomNavigationBarVC, WKUIDelegate {
+class AboutUsViewController: CustomNavigationBarVC {
 
     @IBOutlet weak var webView: WKWebView!
-    var aboutRoyal = ""
+    var aboutUs = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let url =  URL(string: "http://31.131.21.105:82/api/v1/about_royal_assist")
+        let url =  URL(string: "http://31.131.21.105:82/api/v1/about_us")
         let task = URLSession.shared.dataTask(with: url!) { (data, _, error) in
                 if error != nil {
                     print("Error")
@@ -24,12 +25,12 @@ class AboutRoyalAssistViewController: CustomNavigationBarVC, WKUIDelegate {
                     do {
                         let myJson = try JSONSerialization.jsonObject(with: content, options:
                             JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
-                        let aboutRoyalAssist = myJson["about_royal_assist"] as! String
-                        print(aboutRoyalAssist)
-                        self.aboutRoyal = """
-                        <span style="font-size: 36pt; color: #302B80;">\(aboutRoyalAssist)</span>
+                        let about = myJson["about_us"] as! String
+                        print(about)
+                        self.aboutUs = """
+                        <span style="font-size: 36pt; color: #302B80;">\(about)</span>
                         """
-                        print(self.aboutRoyal)
+                        print(self.aboutUs)
                         return
                         } catch {
                     }
@@ -39,7 +40,7 @@ class AboutRoyalAssistViewController: CustomNavigationBarVC, WKUIDelegate {
         task.resume()
     }
     override func viewDidAppear(_ animated: Bool) {
-        navigationItem.title = "About royal assist"
-        webView.loadHTMLString(self.aboutRoyal , baseURL: nil)
+        navigationItem.title = "About us"
+        webView.loadHTMLString(self.aboutUs , baseURL: nil)
     }
 }

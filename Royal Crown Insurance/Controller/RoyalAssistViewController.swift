@@ -49,11 +49,9 @@ extension RoyalAssistViewController: UICollectionViewDataSource, UICollectionVie
             self.performSegue(withIdentifier: "reportAnAccidentVC", sender: nil)
         case "MAKE A CALL":
             let url = NSURL(string: "tel://77777773")!
-
             if UIApplication.shared.canOpenURL(url as URL) {
                 UIApplication.shared.open(url as URL)
             }
-//            self.performSegue(withIdentifier: "makeACallVC", sender: nil)
         case "ABOUT ROYAL ASSIST":
             self.performSegue(withIdentifier: "aboutRoyalAssistVC", sender: nil)
         default:

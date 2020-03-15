@@ -13,6 +13,7 @@
 		44363869241D4610002379C6 /* QuestionnariesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44363868241D4610002379C6 /* QuestionnariesViewController.swift */; };
 		4436386B241D4645002379C6 /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4436386A241D4645002379C6 /* ServicesViewController.swift */; };
 		4436386F241D4B6C002379C6 /* CustomNavigationBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4436386E241D4B6C002379C6 /* CustomNavigationBarVC.swift */; };
+		44379D71241E3AD7006B2F34 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44379D70241E3AD7006B2F34 /* AboutUsViewController.swift */; };
 		443DE4B3241C333C004EB5F1 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443DE4B2241C333C004EB5F1 /* MenuCollectionViewCell.swift */; };
 		44497722241BD48B009AB2D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44497721241BD48B009AB2D8 /* AppDelegate.swift */; };
 		44497724241BD48B009AB2D8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44497723241BD48B009AB2D8 /* SceneDelegate.swift */; };
@@ -33,6 +34,7 @@
 		44363868241D4610002379C6 /* QuestionnariesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnariesViewController.swift; sourceTree = "<group>"; };
 		4436386A241D4645002379C6 /* ServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
 		4436386E241D4B6C002379C6 /* CustomNavigationBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBarVC.swift; sourceTree = "<group>"; };
+		44379D70241E3AD7006B2F34 /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
 		443DE4B2241C333C004EB5F1 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		4449771E241BD48B009AB2D8 /* Royal Crown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Royal Crown.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		44497721241BD48B009AB2D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +61,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		44379D6F241E3AB7006B2F34 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				44379D70241E3AD7006B2F34 /* AboutUsViewController.swift */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
 		443DE4B0241C323E004EB5F1 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -72,12 +82,13 @@
 			children = (
 				4436385E241D4514002379C6 /* RoyalAssistViewController.swift */,
 				4456DCBC241D65B90040074C /* Royal Assist */,
+				445B3C8D241D0C1900FBC53A /* AboutViewController.swift */,
+				44379D6F241E3AB7006B2F34 /* About */,
 				4436386E241D4B6C002379C6 /* CustomNavigationBarVC.swift */,
 				4436386A241D4645002379C6 /* ServicesViewController.swift */,
 				44363868241D4610002379C6 /* QuestionnariesViewController.swift */,
 				44363860241D4536002379C6 /* RoyalPaymentViewController.swift */,
 				44497725241BD48B009AB2D8 /* MainViewController.swift */,
-				445B3C8D241D0C1900FBC53A /* AboutViewController.swift */,
 				44363862241D4559002379C6 /* WhatToDoIfViewController.swift */,
 			);
 			path = Controller;
@@ -214,6 +225,7 @@
 				443DE4B3241C333C004EB5F1 /* MenuCollectionViewCell.swift in Sources */,
 				44363869241D4610002379C6 /* QuestionnariesViewController.swift in Sources */,
 				44363861241D4536002379C6 /* RoyalPaymentViewController.swift in Sources */,
+				44379D71241E3AD7006B2F34 /* AboutUsViewController.swift in Sources */,
 				4456DCC2241D66300040074C /* AboutRoyalAssistViewController.swift in Sources */,
 				4436386B241D4645002379C6 /* ServicesViewController.swift in Sources */,
 				4436385F241D4514002379C6 /* RoyalAssistViewController.swift in Sources */,
