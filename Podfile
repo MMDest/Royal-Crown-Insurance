@@ -6,7 +6,6 @@ target 'Royal Crown Insurance' do
   use_frameworks!
   pod 'GoogleMaps'
   pod 'GooglePlaces'
-  pod 'TextFieldEffects'
   # Pods for Royal Crown Insurance
 
 end

@@ -16,6 +16,7 @@ class BranchesViewController: CustomNavigationBarVC {
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var hideButton: UIButton!
     @IBOutlet weak var infoLabel: UILabel!
+    
     var selectMarker:GMSMarker?
     var branch :[Branch]?
     var isHide = true
