@@ -47,6 +47,8 @@ extension AboutViewController: UICollectionViewDataSource, UICollectionViewDeleg
         switch itemMenuArray[indexPath.row].name {
         case "ABOUT US":
             self.performSegue(withIdentifier: "aboutUsVC", sender: nil)
+        case "BRANCHES":
+            self.performSegue(withIdentifier: "branchesVC", sender: nil)
         default:
             return
         }

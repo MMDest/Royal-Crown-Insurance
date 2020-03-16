@@ -15,11 +15,24 @@ class AboutRoyalAssistViewController: CustomNavigationBarVC, WKUIDelegate {
     var aboutRoyal = ""
     override func viewDidLoad() {
         super.viewDidLoad()
+        requesqAboutRoyalAssist()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        navigationItem.title = "About royal assist"
+        webView.loadHTMLString(self.aboutRoyal , baseURL: nil)
+    }
+    fileprivate func requesqAboutRoyalAssist() {
         let url =  URL(string: "http://31.131.21.105:82/api/v1/about_royal_assist")
         let task = URLSession.shared.dataTask(with: url!) { (data, _, error) in
-                if error != nil {
-                    print("Error")
-                } else {
+            if error != nil {
+                print("Error")
+                let alert = UIAlertController(title: "Error", message: "The request tined out", preferredStyle: .alert)
+                let okButton  = UIAlertAction(title: "OK", style: .default) { (_) in
+                    self.navigationController?.popViewController(animated: true)
+                }
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            } else {
                 if let content = data {
                     do {
                         let myJson = try JSONSerialization.jsonObject(with: content, options:
@@ -31,15 +44,12 @@ class AboutRoyalAssistViewController: CustomNavigationBarVC, WKUIDelegate {
                         """
                         print(self.aboutRoyal)
                         return
-                        } catch {
+                    } catch {
                     }
                 }
             }
         }
         task.resume()
     }
-    override func viewDidAppear(_ animated: Bool) {
-        navigationItem.title = "About royal assist"
-        webView.loadHTMLString(self.aboutRoyal , baseURL: nil)
-    }
+    
 }

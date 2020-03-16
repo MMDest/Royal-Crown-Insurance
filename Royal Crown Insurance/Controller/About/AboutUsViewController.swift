@@ -20,6 +20,12 @@ class AboutUsViewController: CustomNavigationBarVC {
         let task = URLSession.shared.dataTask(with: url!) { (data, _, error) in
                 if error != nil {
                     print("Error")
+                    let alert = UIAlertController(title: "Error", message: "The request tined out", preferredStyle: .alert)
+                    let okButton  = UIAlertAction(title: "OK", style: .default) { (_) in
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                    alert.addAction(okButton)
+                    self.present(alert, animated: true, completion: nil)
                 } else {
                 if let content = data {
                     do {
