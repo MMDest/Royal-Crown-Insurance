@@ -7,10 +7,13 @@
 //
 
 import Foundation
+import UIKit
 
 struct Menu {
     
     var name: String?
     var imageName: String?
-    
+    var image: UIImage?{
+        return UIImage(named: imageName!)
+    }
 }
