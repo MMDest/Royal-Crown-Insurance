@@ -14,5 +14,4 @@ class RoyalPaymentViewController: CustomNavigationBarVC {
         super.viewDidLoad()
 
     }
-    
 }

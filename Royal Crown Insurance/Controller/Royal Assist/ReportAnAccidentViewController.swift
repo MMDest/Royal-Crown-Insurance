@@ -15,8 +15,7 @@ class ReportAnAccidentViewController: CustomNavigationBarVC {
     @IBOutlet weak var telNoTextField: UITextField!
     @IBOutlet weak var reportAccident: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var agreeSwich: UISwitch!
-    var report:Report?
+    var report: Report?
     var image = [UIImage(named: "add_photo_icon")]
 
     override func viewDidLoad() {
@@ -34,7 +33,7 @@ class ReportAnAccidentViewController: CustomNavigationBarVC {
         reportAccident.widthAnchor.constraint(equalToConstant: reportAccident.frame.width + 10).isActive = true
         navigationItem.title = "Accident report"
     }
-    
+
     @IBAction func reportAccident(_ sender: Any) {
         guard nameTextField.text != "" else {
             showAlert(title: "Error", message: "Enter name")
@@ -52,37 +51,38 @@ class ReportAnAccidentViewController: CustomNavigationBarVC {
         report?.name = nameTextField.text
         report?.telNo = telNoTextField.text
         for image in image {
-            report?.images.append(image?.jpegData(compressionQuality:1))
+            report?.images.append(image?.jpegData(compressionQuality: 1))
         }
-        
     }
-    
+
     @IBAction func agreeSwich(_ sender: UISwitch) {
-        if(sender.isOn){
+        if sender.isOn {
             reportAccident.alpha = 1
             reportAccident.isUserInteractionEnabled = true
-        }else{
+        } else {
             reportAccident.alpha = 0.5
             reportAccident.isUserInteractionEnabled = false
         }
     }
-    
-    func showAlert(title:String, message:String){
+
+    func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okButton  = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(okButton)
         self.present(alert, animated: true, completion: nil)
     }
-    
+
 }
 
 extension ReportAnAccidentViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return image.count
     }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as? ImageCollectionViewCell{
+
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell",
+                                                             for: indexPath) as? ImageCollectionViewCell {
             print(indexPath.row)
             itemCell.imageView.image = image[indexPath.row]
 //            if(indexPath.row == 0){
@@ -98,12 +98,14 @@ extension ReportAnAccidentViewController: UICollectionViewDelegate, UICollection
         return UICollectionViewCell()
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if(indexPath.row == 0){
-            let alertController = UIAlertController(title: "Photo Source", message: "Choose a source", preferredStyle: .actionSheet)
-            let cameraAction = UIAlertAction(title: "Camera", style: .default) { (action) in
+        if indexPath.row == 0 {
+            let alertController = UIAlertController(title: "Photo Source",
+                                                    message: "Choose a source",
+                                                    preferredStyle: .actionSheet)
+            let cameraAction = UIAlertAction(title: "Camera", style: .default) { (_) in
                 self.chooseImagePickerAction(source: .camera)
             }
-            let photoLibAction = UIAlertAction(title: "Photo Library", style: .default) { (action) in
+            let photoLibAction = UIAlertAction(title: "Photo Library", style: .default) { (_) in
                 self.chooseImagePickerAction(source: .photoLibrary)
             }
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -111,16 +113,17 @@ extension ReportAnAccidentViewController: UICollectionViewDelegate, UICollection
             alertController.addAction(photoLibAction)
             alertController.addAction(cancelAction)
             self.present(alertController, animated: true, completion: nil)
-        }else{
+        } else {
             image.remove(at: indexPath.row)
             collectionView.deleteItems(at: [indexPath])
         }
     }
 }
 
-extension ReportAnAccidentViewController: UIImagePickerControllerDelegate ,UINavigationControllerDelegate{
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+extension ReportAnAccidentViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         image.append(info[UIImagePickerController.InfoKey.editedImage] as? UIImage)
         let indexPath = IndexPath(row: image.count-1, section: 0) //at some index
         self.collectionView.insertItems(at: [indexPath])

@@ -13,14 +13,15 @@ class AboutUsViewController: CustomNavigationBarVC {
 
     @IBOutlet weak var webView: WKWebView!
     var aboutUs = ""
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         let url =  URL(string: "http://31.131.21.105:82/api/v1/about_us")
         let task = URLSession.shared.dataTask(with: url!) { (data, _, error) in
                 if error != nil {
                     print("Error")
-                    let alert = UIAlertController(title: "Error", message: "The request tined out", preferredStyle: .alert)
+                    let alert = UIAlertController(title: "Error",
+                                                  message: "The request tined out",
+                                                  preferredStyle: .alert)
                     let okButton  = UIAlertAction(title: "OK", style: .default) { (_) in
                         self.navigationController?.popViewController(animated: true)
                     }
@@ -31,10 +32,9 @@ class AboutUsViewController: CustomNavigationBarVC {
                     do {
                         let myJson = try JSONSerialization.jsonObject(with: content, options:
                             JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
-                        let about = myJson["about_us"] as! String
-                        print(about)
+                        let about = myJson["about_us"] as? String
                         self.aboutUs = """
-                        <span style="font-size: 36pt; color: #302B80;">\(about)</span>
+                        <span style="font-size: 36pt; color: #302B80;">\(about!)</span>
                         """
                         print(self.aboutUs)
                         return
@@ -47,6 +47,6 @@ class AboutUsViewController: CustomNavigationBarVC {
     }
     override func viewDidAppear(_ animated: Bool) {
         navigationItem.title = "About us"
-        webView.loadHTMLString(self.aboutUs , baseURL: nil)
+        webView.loadHTMLString(self.aboutUs, baseURL: nil)
     }
 }

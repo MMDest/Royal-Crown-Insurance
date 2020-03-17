@@ -10,14 +10,14 @@ import Foundation
 import UIKit
 
 extension UITextField {
-    func addBottomBorder(){
+    func addBottomBorder() {
         let bottomLine = CALayer()
         bottomLine.frame = CGRect(x: 0, y: self.frame.size.height - 1, width: self.frame.size.width, height: 1)
         bottomLine.backgroundColor = UIColor.gray.cgColor
         borderStyle = .none
         layer.addSublayer(bottomLine)
     }
-    func isEditingAddBoider(){
+    func isEditingAddBoider() {
         let bottomLine = CALayer()
         bottomLine.frame = CGRect(x: 0, y: self.frame.size.height - 1, width: self.frame.size.width, height: 1)
         bottomLine.backgroundColor = CGColor(srgbRed: 48/255, green: 43/255, blue: 128/255, alpha: 1)

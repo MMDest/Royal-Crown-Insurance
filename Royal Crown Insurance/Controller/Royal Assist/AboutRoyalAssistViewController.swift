@@ -19,7 +19,7 @@ class AboutRoyalAssistViewController: CustomNavigationBarVC, WKUIDelegate {
     }
     override func viewDidAppear(_ animated: Bool) {
         navigationItem.title = "About royal assist"
-        webView.loadHTMLString(self.aboutRoyal , baseURL: nil)
+        webView.loadHTMLString(self.aboutRoyal, baseURL: nil)
     }
     fileprivate func requesqAboutRoyalAssist() {
         let url =  URL(string: "http://31.131.21.105:82/api/v1/about_royal_assist")
@@ -37,10 +37,10 @@ class AboutRoyalAssistViewController: CustomNavigationBarVC, WKUIDelegate {
                     do {
                         let myJson = try JSONSerialization.jsonObject(with: content, options:
                             JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
-                        let aboutRoyalAssist = myJson["about_royal_assist"] as! String
-                        print(aboutRoyalAssist)
+                        let aboutRoyalAssist = myJson["about_royal_assist"] as? String
+                        print(aboutRoyalAssist!)
                         self.aboutRoyal = """
-                        <span style="font-size: 36pt; color: #302B80;">\(aboutRoyalAssist)</span>
+                        <span style="font-size: 36pt; color: #302B80;">\(aboutRoyalAssist!)</span>
                         """
                         print(self.aboutRoyal)
                         return
@@ -51,5 +51,5 @@ class AboutRoyalAssistViewController: CustomNavigationBarVC, WKUIDelegate {
         }
         task.resume()
     }
-    
+
 }
