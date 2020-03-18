@@ -20,7 +20,6 @@ class AboutViewController: CustomNavigationBarVC {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -34,7 +33,6 @@ extension AboutViewController: UICollectionViewDataSource, UICollectionViewDeleg
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return itemMenuArray.count
     }
-
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCell",
@@ -51,6 +49,8 @@ extension AboutViewController: UICollectionViewDataSource, UICollectionViewDeleg
             self.performSegue(withIdentifier: "aboutUsVC", sender: nil)
         case "BRANCHES":
             self.performSegue(withIdentifier: "branchesVC", sender: nil)
+        case "E-NSURED":
+            self.performSegue(withIdentifier: "ensuredVC", sender: nil)
         default:
             return
         }
@@ -60,6 +60,6 @@ extension AboutViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 190)
+        return CGSize(width: collectionView.frame.width, height: (collectionView.frame.height / 3) - 10)
     }
 }

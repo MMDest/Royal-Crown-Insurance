@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMaps
+import SVProgressHUD
 
 class BranchesViewController: CustomNavigationBarVC {
     @IBOutlet weak var titleLabel: UILabel!
@@ -18,18 +19,37 @@ class BranchesViewController: CustomNavigationBarVC {
     var selectMarker: GMSMarker?
     var branch: [Branch]?
     var isHide = true
+    let networkManager = NetworkManager()
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-        urlRequest()
-    }
-    override func viewDidAppear(_ animated: Bool) {
+        SVProgressHUD.show()
+        networkManager.getBranch { result in
+        SVProgressHUD.dismiss()
+        switch result {
+        case .success(let value) :
+            self.branch = value
+        case .failure(let error) :
+            let alert = UIAlertController(title: "Error",
+            message: "The request tined out",
+            preferredStyle: .alert)
+            let okButton  = UIAlertAction(title: "OK", style: .default) { (_) in
+                self.navigationController?.popViewController(animated: true)
+            }
+            alert.addAction(okButton)
+            self.present(alert, animated: true, completion: nil)
+            print(error)
+            }
+        }
         navigationItem.title = "Branches"
         self.itemView.transform = self.itemView.transform.translatedBy( x: 0.0, y: 140.0)
+        titleLabel.text = ""
+    }
+    override func viewDidAppear(_ animated: Bool) {
         addMapToView()
     }
     @IBAction func findDirection(_ sender: UIButton) {
-        addMapToView()
+//        addMapToView()
 //        getRouteSteps(from: branch![1].position(), to: branch![0].position())
     }
     @IBAction func showitemView(_ sender: UIButton) {
@@ -43,24 +63,7 @@ class BranchesViewController: CustomNavigationBarVC {
         mapView.isMyLocationEnabled = true
         mapView.camera = camera
     }
-    func urlRequest() {
-        let urlString = "http://31.131.21.105:82/api/v1/branches"
-        guard let url = URL(string: urlString) else {
-            return
-        }
-        URLSession.shared.dataTask(with: url) { (data, _, error) in
-            guard let data = data else {print("111")
-                return}
-            guard error == nil else {print("112")
-                return}
-            do {
-                let json = try JSONDecoder().decode([Branch].self, from: data)
-                self.branch = json
-            } catch let error {
-                print(error)
-            }
-        }.resume()
-    }
+
     func addMarker() {
         guard self.branch != nil else {
             return
@@ -145,19 +148,19 @@ E: \(branch.email)
         let path = GMSPath(fromEncodedPath: polyStr)
         let polyline = GMSPolyline(path: path)
         polyline.strokeWidth = 3.0
-        polyline.map = mapView // Google MapView
+        polyline.map = mapView
     }
     func isHiden() {
         if isHide {
             UIView.animate(withDuration: 0.5) {
-                self.itemView.frame.origin.y -= self.itemView.frame.origin.y
+                self.itemView.frame.origin.y -= 140
             }
             self.itemView.transform = self.itemView.transform.translatedBy( x: 0.0, y: -140.0  )
             isHide = false
             hideButton.setBackgroundImage(UIImage(named: "arrow_down_icon"), for: .normal)
         } else {
             UIView.animate(withDuration: 0.5) {
-                self.itemView.frame.origin.y += self.itemView.frame.origin.y
+                self.itemView.frame.origin.y += 140
             }
             self.itemView.transform = self.itemView.transform.translatedBy( x: 0.0, y: 140.0  )
             isHide = true
@@ -180,6 +183,8 @@ extension BranchesViewController: GMSMapViewDelegate {
     }
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         selectMarker?.icon = UIImage(named: "pin_passive_icon")
+        titleLabel.text = ""
+        infoLabel.text = ""
          if(isHide) == false {
                isHiden()
         }

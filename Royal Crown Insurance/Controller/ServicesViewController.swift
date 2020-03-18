@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ServicesViewController: CustomNavigationBarVC {
+class ServicesViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
 
@@ -16,6 +16,7 @@ class ServicesViewController: CustomNavigationBarVC {
         Menu(name: "BUSINESS", imageName: "business_image"),
         Menu(name: "PERSONALL", imageName: "personal_image")
     ]
+    var service = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +25,7 @@ class ServicesViewController: CustomNavigationBarVC {
     override func viewWillAppear(_ animated: Bool) {
         collectionView.dataSource = self
         collectionView.delegate  = self
-        self.navigationItem.title = "Servicess"
+        navigationItem.titleView = UIImageView(image: UIImage(named: "red_logo_icon"))
     }
 }
 extension ServicesViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -42,6 +43,23 @@ extension ServicesViewController: UICollectionViewDataSource, UICollectionViewDe
         }
         return UICollectionViewCell()
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch itemMenuArray[indexPath.row].name {
+        case "BUSINESS":
+            service = "BUSINESS"
+            self.performSegue(withIdentifier: "listServiceVC", sender: nil)
+        case "PERSONALL":
+            service = "PERSONALL"
+            self.performSegue(withIdentifier: "listServiceVC", sender: nil)
+        default:
+            return
+        }
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "listServiceVC" else { return }
+            let dvc = segue.destination as? ListServicesViewController
+            dvc?.typeServices = self.service
+    }
 }
 
 extension ServicesViewController: UICollectionViewDelegateFlowLayout {
@@ -51,3 +69,4 @@ extension ServicesViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: collectionView.frame.width, height: (collectionView.frame.height/2) - 5)
     }
 }
+//listServiceVC

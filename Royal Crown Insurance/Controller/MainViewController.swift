@@ -21,15 +21,6 @@ class MainViewController: UIViewController {
     ]
     override func viewDidLoad() {
         super.viewDidLoad()
-        let asdf = NetworkManager()
-        asdf.getAboutUs(aboutUrl: "/api/v1/about_us") { result in
-            switch result {
-            case .success(let value):
-                print(value)
-            case .failure(let error):
-                print(error)
-            }
-        }
     }
     override func viewDidAppear(_ animated: Bool) {
         collectionView.dataSource = self
@@ -87,8 +78,8 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         if (indexPath.item + 1) % 3 == 0 {
-            return CGSize(width: collectionView.frame.width, height: 180)
+            return CGSize(width: collectionView.frame.width, height: collectionView.frame.height/3 - 10)
         }
-        return CGSize(width: (collectionView.frame.width/2) - 5, height: 200)
+        return CGSize(width: (collectionView.frame.width/2) - 5, height: collectionView.frame.height/3 - 10)
     }
 }

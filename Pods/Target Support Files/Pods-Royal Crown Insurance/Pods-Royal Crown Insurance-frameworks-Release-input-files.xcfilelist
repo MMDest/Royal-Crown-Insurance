@@ -1,2 +1,3 @@
 ${PODS_ROOT}/Target Support Files/Pods-Royal Crown Insurance/Pods-Royal Crown Insurance-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework

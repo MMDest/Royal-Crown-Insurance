@@ -7,11 +7,16 @@
 //
 
 import UIKit
+import WebKit
 
 class RoyalPaymentViewController: CustomNavigationBarVC {
 
+    @IBOutlet weak var viewWeb: WKWebView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let url = URL(string: "https://www.jccsmart.com/e-bill/9634031")
+        let urlRequest = URLRequest(url: url!)
+        viewWeb.load(urlRequest)
+        navigationItem.title = "Royal payment"
     }
 }

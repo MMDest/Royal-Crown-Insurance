@@ -7,7 +7,7 @@ target 'Royal Crown Insurance' do
   pod 'GoogleMaps'
   pod 'GooglePlaces'
   pod 'SwiftLint'
-  pod "Alamofire"
+  pod 'Alamofire'
+  pod 'SVProgressHUD'
   # Pods for Royal Crown Insurance
-
 end

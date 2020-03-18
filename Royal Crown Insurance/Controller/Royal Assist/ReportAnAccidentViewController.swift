@@ -17,21 +17,25 @@ class ReportAnAccidentViewController: CustomNavigationBarVC {
     @IBOutlet weak var collectionView: UICollectionView!
     var report: Report?
     var image = [UIImage(named: "add_photo_icon")]
-
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.dataSource = self
         collectionView.delegate = self
-    }
-    override func viewWillAppear(_ animated: Bool) {
+        reportAccident.alpha = 0.5
+        reportAccident.isUserInteractionEnabled = false
         nameTextField.addBottomBorder()
         carRegNoTextField.addBottomBorder()
         telNoTextField.addBottomBorder()
-        reportAccident.alpha = 0.5
-        reportAccident.isUserInteractionEnabled = false
+        dismissKey()
+//        addTapGestureToHideKeyboard()
+    }
+    override func viewWillAppear(_ animated: Bool) {
         reportAccident.layer.cornerRadius = reportAccident.frame.size.height/2
         reportAccident.widthAnchor.constraint(equalToConstant: reportAccident.frame.width + 10).isActive = true
         navigationItem.title = "Accident report"
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
 
     @IBAction func reportAccident(_ sender: Any) {
@@ -85,14 +89,6 @@ extension ReportAnAccidentViewController: UICollectionViewDelegate, UICollection
                                                              for: indexPath) as? ImageCollectionViewCell {
             print(indexPath.row)
             itemCell.imageView.image = image[indexPath.row]
-//            if(indexPath.row == 0){
-//                itemCell.heightAnchor.constraint(equalToConstant: 50).isActive = true
-//                itemCell.widthAnchor.constraint(equalToConstant: 50).isActive = true
-//            }
-//            else{
-//                itemCell.heightAnchor.constraint(equalToConstant: 100).isActive = true
-//                itemCell.widthAnchor.constraint(equalToConstant: 100).isActive = true
-//            }
             return itemCell
         }
         return UICollectionViewCell()
@@ -138,5 +134,16 @@ extension ReportAnAccidentViewController: UIImagePickerControllerDelegate, UINav
             imagePicker.sourceType = source
             self.present(imagePicker, animated: true, completion: nil)
         }
+    }
+}
+extension UIViewController {
+    func dismissKey() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }

@@ -37,9 +37,9 @@ extension RoyalAssistViewController: UICollectionViewDataSource, UICollectionVie
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCell",
                                                              for: indexPath) as? MenuCollectionViewCell {
-                  itemCell.nameLabel.text = itemMenuArray[indexPath.row].name
-                  itemCell.imageView.image = itemMenuArray[indexPath.row].image
-                  return itemCell
+                itemCell.nameLabel.text = itemMenuArray[indexPath.row].name
+                itemCell.imageView.image = itemMenuArray[indexPath.row].image
+                return itemCell
               }
         return UICollectionViewCell()
     }
@@ -63,6 +63,6 @@ extension RoyalAssistViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: collectionView.frame.height/3 - 10)
+        return CGSize(width: view.frame.width, height: collectionView.frame.height / 3 - 10)
     }
 }

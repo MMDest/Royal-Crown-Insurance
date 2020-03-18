@@ -29,7 +29,7 @@ struct Branch: Decodable {
         case phone
         case fax
         case email
-        case postalCode = "postal_kode"
+        case postalCode = "postal_code"
         case latitude
         case longitude
     }
