@@ -111,6 +111,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		44311A3924225DDF00BAAB0A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				443198522420E4FE0097E50E /* NetworkManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		44379D6F241E3AB7006B2F34 /* About */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				44497721241BD48B009AB2D8 /* AppDelegate.swift */,
+				44311A3924225DDF00BAAB0A /* Network */,
 				447825C3241FFD0B00EF44E1 /* Extension */,
 				443DE4B4241C3733004EB5F1 /* Model */,
 				443DE4B1241C327A004EB5F1 /* Controller */,
@@ -225,7 +234,6 @@
 		447825C3241FFD0B00EF44E1 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				443198522420E4FE0097E50E /* NetworkManager.swift */,
 				447825C1241FFCAF00EF44E1 /* TextFieldExtension.swift */,
 			);
 			path = Extension;

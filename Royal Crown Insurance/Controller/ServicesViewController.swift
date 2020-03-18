@@ -69,4 +69,3 @@ extension ServicesViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: collectionView.frame.width, height: (collectionView.frame.height/2) - 5)
     }
 }
-//listServiceVC

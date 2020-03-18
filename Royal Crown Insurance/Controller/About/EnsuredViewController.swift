@@ -18,6 +18,5 @@ class EnsuredViewController: CustomNavigationBarVC {
         let urlRequest = URLRequest(url: url!)
         viewWeb.load(urlRequest)
         navigationItem.titleView = UIImageView(image: UIImage(named: "main_logo"))
-        // Do any additional setup after loading the view.
     }
 }

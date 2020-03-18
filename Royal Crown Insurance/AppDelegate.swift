@@ -12,9 +12,7 @@ import GoogleMaps
 @UIApplicationMain
  class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    lazy var window: UIWindow? = {
-        return UIApplication.shared.windows.first
-    }()
+    var window: UIWindow?
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

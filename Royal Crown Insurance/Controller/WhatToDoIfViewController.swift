@@ -16,7 +16,7 @@ class WhatToDoIfViewController: CustomNavigationBarVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         request()
-        sleep(1)
+        sleep(10)
         tableView.reloadData()
         tableView.rowHeight = tableView.frame.height / 8
     }

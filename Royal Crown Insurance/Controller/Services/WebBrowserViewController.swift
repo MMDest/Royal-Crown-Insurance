@@ -18,6 +18,5 @@ class WebBrowserViewController: UIViewController {
         let urlRequest = URLRequest(url: URL(fileURLWithPath: webString))
         webView.load(urlRequest)
         navigationItem.titleView = UIImageView(image: UIImage(named: "main_logo"))
-        // Do any additional setup after loading the view.
     }
 }
