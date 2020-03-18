@@ -11,18 +11,17 @@ import UIKit
 class AboutViewController: CustomNavigationBarVC {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    
+
     let itemMenuArray: [Menu] = [
-        Menu(name: "ABOUT US",imageName: "about_us_image"),
-        Menu(name: "BRANCHES",imageName: "brances_image"),
-        Menu(name: "E-NSURED",imageName: "ensured_image")
+        Menu(name: "ABOUT US", imageName: "about_us_image"),
+        Menu(name: "BRANCHES", imageName: "brances_image"),
+        Menu(name: "E-NSURED", imageName: "ensured_image")
     ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         collectionView.dataSource = self
         collectionView.delegate  = self
@@ -30,13 +29,14 @@ class AboutViewController: CustomNavigationBarVC {
     }
 }
 
-extension AboutViewController: UICollectionViewDataSource, UICollectionViewDelegate{
+extension AboutViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return itemMenuArray.count
     }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCell", for: indexPath) as? MenuCollectionViewCell{
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuCell",
+                                                             for: indexPath) as? MenuCollectionViewCell {
             itemCell.nameLabel.text = itemMenuArray[indexPath.row].name
             itemCell.imageView.image = itemMenuArray[indexPath.row].image
             return itemCell
@@ -49,15 +49,17 @@ extension AboutViewController: UICollectionViewDataSource, UICollectionViewDeleg
             self.performSegue(withIdentifier: "aboutUsVC", sender: nil)
         case "BRANCHES":
             self.performSegue(withIdentifier: "branchesVC", sender: nil)
+        case "E-NSURED":
+            self.performSegue(withIdentifier: "ensuredVC", sender: nil)
         default:
             return
         }
     }
 }
 extension AboutViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 190)
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: (collectionView.frame.height / 3) - 10)
     }
 }
-
-

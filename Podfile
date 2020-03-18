@@ -6,6 +6,8 @@ target 'Royal Crown Insurance' do
   use_frameworks!
   pod 'GoogleMaps'
   pod 'GooglePlaces'
+  pod 'SwiftLint'
+  pod 'Alamofire'
+  pod 'SVProgressHUD'
   # Pods for Royal Crown Insurance
-
 end

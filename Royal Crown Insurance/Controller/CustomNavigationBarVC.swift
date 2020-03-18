@@ -9,16 +9,19 @@
 import UIKit
 
 class CustomNavigationBarVC: UIViewController {
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        let backButton = UIBarButtonItem(image: UIImage(named :"red_logo_icon"), style: .plain, target: self, action: #selector(backToRoot))
+        let backButton = UIBarButtonItem(image: UIImage(named: "red_logo_icon"),
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(backToRoot))
         backButton.tintColor = .red
         navigationItem.rightBarButtonItem = backButton
     }
-    
-    @objc func backToRoot(){
+
+    @objc func backToRoot() {
         navigationController?.popToRootViewController(animated: true)
     }
-    
+
 }

@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (5.0.4)
   - GoogleMaps (3.8.0):
     - GoogleMaps/Maps (= 3.8.0)
   - GoogleMaps/Base (3.8.0)
@@ -6,20 +7,31 @@ PODS:
     - GoogleMaps/Base
   - GooglePlaces (3.8.0):
     - GoogleMaps/Base (= 3.8.0)
+  - SVProgressHUD (2.2.5)
+  - SwiftLint (0.39.1)
 
 DEPENDENCIES:
+  - Alamofire
   - GoogleMaps
   - GooglePlaces
+  - SVProgressHUD
+  - SwiftLint
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - GoogleMaps
     - GooglePlaces
+    - SVProgressHUD
+    - SwiftLint
 
 SPEC CHECKSUMS:
+  Alamofire: 0fe5fd24b4298dc377a6550da7d5f1b30e286fcb
   GoogleMaps: 7c8d66d70e4e8c300f43a7219d8fdaad7b325a9a
   GooglePlaces: d5f70c3e9e427964fdeca1301a665d276ccd8754
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
 
-PODFILE CHECKSUM: c4fcf3f1021ecc0b3e55649f50fcf6e40ffd6d34
+PODFILE CHECKSUM: 701d29d214a7eff0afe2b8ff4e1ab8bf11def887
 
 COCOAPODS: 1.8.4
