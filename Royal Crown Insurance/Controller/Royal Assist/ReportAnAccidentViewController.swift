@@ -17,6 +17,7 @@ class ReportAnAccidentViewController: CustomNavigationBarVC {
     @IBOutlet weak var collectionView: UICollectionView!
     var report: Report?
     var image = [UIImage(named: "add_photo_icon")]
+    var networkManager = NetworkManager()
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.dataSource = self
@@ -27,7 +28,6 @@ class ReportAnAccidentViewController: CustomNavigationBarVC {
         carRegNoTextField.addBottomBorder()
         telNoTextField.addBottomBorder()
         dismissKey()
-//        addTapGestureToHideKeyboard()
     }
     override func viewWillAppear(_ animated: Bool) {
         reportAccident.layer.cornerRadius = reportAccident.frame.size.height/2
@@ -37,7 +37,6 @@ class ReportAnAccidentViewController: CustomNavigationBarVC {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
-
     @IBAction func reportAccident(_ sender: Any) {
         guard nameTextField.text != "" else {
             showAlert(title: "Error", message: "Enter name")
@@ -51,38 +50,50 @@ class ReportAnAccidentViewController: CustomNavigationBarVC {
             showAlert(title: "Error", message: "Incorrectly entered number")
             return
         }
-        report?.carRegNo = carRegNoTextField.text
-        report?.name = nameTextField.text
-        report?.telNo = telNoTextField.text
-        for image in image {
-            report?.images.append(image?.jpegData(compressionQuality: 1))
+        var report = Report()
+        report.carRegNo = carRegNoTextField.text
+        report.name = nameTextField.text
+        report.telNo = telNoTextField.text
+        networkManager.postReport(report: report) { result in
+            switch result {
+            case .success(let value):
+                let alert = UIAlertController(title: "Info",
+                                              message: value,
+                                              preferredStyle: .alert)
+                let okButton  = UIAlertAction(title: "OK", style: .default) { (_) in
+                    self.navigationController?.popViewController(animated: true)
+                }
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            case .failure(let error):
+                let alert = UIAlertController(title: "Error",
+                                              message: "The request timed out",
+                                              preferredStyle: .alert)
+                let okButton  = UIAlertAction(title: "OK", style: .default) { (_) in
+                    self.navigationController?.popViewController(animated: true)
+                }
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+                print(error)
+            }
         }
     }
-
     @IBAction func agreeSwich(_ sender: UISwitch) {
-        if sender.isOn {
-            reportAccident.alpha = 1
-            reportAccident.isUserInteractionEnabled = true
-        } else {
-            reportAccident.alpha = 0.5
-            reportAccident.isUserInteractionEnabled = false
-        }
+        reportAccident.alpha = sender.isOn ? 1 : 0.5
+        reportAccident.isUserInteractionEnabled = sender.isOn ? true : false
     }
-
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okButton  = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(okButton)
         self.present(alert, animated: true, completion: nil)
     }
-
 }
 
 extension ReportAnAccidentViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return image.count
     }
-
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell",
@@ -117,7 +128,6 @@ extension ReportAnAccidentViewController: UICollectionViewDelegate, UICollection
 }
 
 extension ReportAnAccidentViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         image.append(info[UIImagePickerController.InfoKey.editedImage] as? UIImage)
@@ -125,7 +135,6 @@ extension ReportAnAccidentViewController: UIImagePickerControllerDelegate, UINav
         self.collectionView.insertItems(at: [indexPath])
            dismiss(animated: true, completion: nil)
        }
-
     func chooseImagePickerAction(source: UIImagePickerController.SourceType) {
         if UIImagePickerController.isSourceTypeAvailable(source) {
             let imagePicker = UIImagePickerController()

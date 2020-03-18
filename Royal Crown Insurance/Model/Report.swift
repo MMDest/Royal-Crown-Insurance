@@ -12,5 +12,5 @@ struct Report: Codable {
     var name: String?
     var carRegNo: String?
     var telNo: String?
-    var images: [Data?]
+//    var images: [Data?]
 }

@@ -20,27 +20,31 @@ class BranchesViewController: CustomNavigationBarVC {
     var branch: [Branch]?
     var isHide = true
     let networkManager = NetworkManager()
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        mapView.delegate = self
+    fileprivate func request() {
         SVProgressHUD.show()
         networkManager.getBranch { result in
-        SVProgressHUD.dismiss()
-        switch result {
-        case .success(let value) :
-            self.branch = value
-        case .failure(let error) :
-            let alert = UIAlertController(title: "Error",
-            message: "The request tined out",
-            preferredStyle: .alert)
-            let okButton  = UIAlertAction(title: "OK", style: .default) { (_) in
-                self.navigationController?.popViewController(animated: true)
-            }
-            alert.addAction(okButton)
-            self.present(alert, animated: true, completion: nil)
-            print(error)
+            SVProgressHUD.dismiss()
+            switch result {
+            case .success(let value) :
+                self.branch = value
+            case .failure(let error) :
+                let alert = UIAlertController(title: "Error",
+                                              message: "The request tined out",
+                                              preferredStyle: .alert)
+                let okButton  = UIAlertAction(title: "OK", style: .default) { (_) in
+                    self.navigationController?.popViewController(animated: true)
+                }
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+                print(error)
             }
         }
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        itemView.isHidden = true
+        mapView.delegate = self
+        request()
         navigationItem.title = "Branches"
         self.itemView.transform = self.itemView.transform.translatedBy( x: 0.0, y: 140.0)
         titleLabel.text = ""
@@ -48,10 +52,7 @@ class BranchesViewController: CustomNavigationBarVC {
     override func viewDidAppear(_ animated: Bool) {
         addMapToView()
     }
-    @IBAction func findDirection(_ sender: UIButton) {
-//        addMapToView()
-//        getRouteSteps(from: branch![1].position(), to: branch![0].position())
-    }
+
     @IBAction func showitemView(_ sender: UIButton) {
         if selectMarker != nil {
         isHiden()
@@ -77,57 +78,6 @@ class BranchesViewController: CustomNavigationBarVC {
             marker.map = mapView
         }
     }
-//    func getRouteSteps(from source: CLLocationCoordinate2D, to destination: CLLocationCoordinate2D) {
-//        let session = URLSession.shared
-//        let url = URL(string: """
-//https://maps.googleapis.com/maps/api/directions/json?origin=\(source.latitude),
-//\(source.longitude)&destination=\(destination.latitude),\(destination.longitude)
-//&sensor=false&mode=driving&key=AIzaSyBHsxb2VlTDX1dAJQ-X6rUPbK94nZJsAvc
-//""")!
-//        let task = session.dataTask(with: url, completionHandler: {
-//            (data, _, error) in guard error == nil else {
-//                print(error!.localizedDescription)
-//                return
-//            }
-//            guard let jsonResult = try? JSONSerialization.jsonObject(with: data!,
-//                             options: .allowFragments) as? [String: Any] else {
-//                print("error in JSONSerialization")
-//                return
-//            }
-//            guard let routes = jsonResult["routes"] as? [Any] else {
-//                return
-//            }
-//            guard let route = routes[0] as? [String: Any] else {
-//                return
-//            }
-//            guard let legs = route["legs"] as? [Any] else {
-//                return
-//            }
-//            guard let leg = legs[0] as? [String: Any] else {
-//                return
-//            }
-//            guard let steps = leg["steps"] as? [Any] else {
-//                return
-//            }
-//              for item in steps {
-//                guard let step = item as? [String: Any] else {
-//                    return
-//                }
-//                guard let polyline = step["polyline"] as? [String: Any] else {
-//                    return
-//                }
-//                guard let polyLineString = polyline["points"] as? String else {
-//                    return
-//                }
-//                //Call this method to draw path on map
-//                DispatchQueue.main.async {
-//                    self.drawPath(from: polyLineString)
-//                }
-//            }
-//        })
-//        task.resume()
-//    }
-
     func addInfoLabel() -> String {
         guard selectMarker?.icon == UIImage(named: "pin_active_icon")else {return ""}
         guard self.branch != nil else {return ""}
@@ -171,6 +121,7 @@ E: \(branch.email)
 
 extension BranchesViewController: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        itemView.isHidden = false
         titleLabel.text = marker.title
         selectMarker?.icon = UIImage(named: "pin_passive_icon")
         marker.icon = UIImage(named: "pin_active_icon")
@@ -183,8 +134,6 @@ extension BranchesViewController: GMSMapViewDelegate {
     }
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         selectMarker?.icon = UIImage(named: "pin_passive_icon")
-        titleLabel.text = ""
-        infoLabel.text = ""
          if(isHide) == false {
                isHiden()
         }

@@ -9,8 +9,7 @@
 import Foundation
 import Alamofire
 
-class NetworkManager
-{
+class NetworkManager {
     static private var url = "http://31.131.21.105:82"
     enum MyError: Error {
         case network
@@ -21,18 +20,13 @@ class NetworkManager
         AF.request("\(NetworkManager.url)\(aboutUrl)").responseJSON { responce in
             switch responce.result {
                 case .failure(let error):
-                    do {
                     result(.failure(error))
-                }
                 case .success(let value):
-                    do {
                         guard let json = value as? [String: Any] else { return }
-                        
                         guard let text = json["\(key)"] as? String else { return }
                         result(.success("""
 <span style="font-size: 36pt; color: #302B80;">\(text)</span>
 """))
-                }
                 
             }
         }
@@ -64,14 +58,12 @@ class NetworkManager
         guard let url = URL(string: "\(NetworkManager.url)/api/v1/services?per_page=14&service_type=\(aboutUrl)&sort_column=title&") else {
             return
         }
-        print(url)
         URLSession.shared.dataTask(with: url) { (data, _, error) in
             guard let data = data else {
                 print("not data")
                 result(.failure(MyError.network))
              return
          }
-            print(data)
             guard error == nil else {
                 print("Error")
              result(.failure(MyError.network))
@@ -85,5 +77,50 @@ class NetworkManager
              result(.failure(error))
             }
         }.resume()
+    }
+    func getInstructions (result: @escaping (Result<[Instruction], Error>) -> Void) {
+        guard let url = URL(string: "\(NetworkManager.url)/api/v1/accident_instructions?sort_column=title&sort_type=asc&") else {
+                   return
+               }
+               URLSession.shared.dataTask(with: url) { (data, _, error) in
+                   guard let data = data else {
+                       print("not data")
+                       result(.failure(MyError.network))
+                    return
+                }
+                   print(data)
+                   guard error == nil else {
+                       print("Error")
+                    result(.failure(MyError.network))
+                    return
+                }
+                   do {
+                       let json = try JSONDecoder().decode([Instruction].self, from: data)
+                    result(.success(json))
+                   } catch let error {
+                       print("ErrorJSon")
+                    result(.failure(error))
+                   }
+               }.resume()
+    }
+    func postReport(report: Report ,result: @escaping (Result<String, Error>) -> Void) {
+        let patametr: [String: String] = [
+            "name" : "\(report.name ?? "")" ,
+            "reg_policy_number": "\(report.carRegNo ?? "")",
+            "phone_number" : "\(report.telNo ?? "")"
+            
+        ]
+        AF.request("http://31.131.21.105:82/api/v1/accident_reports", method: .post, parameters: patametr, encoder: JSONParameterEncoder.default).responseJSON{
+            response in
+                    switch response.result {
+                    case .success(let value):
+                        if let json = value as? [String: String] {
+                            result(.success(json["message"] ?? ""))
+                        }
+                    case .failure(let error):
+                        print(error)
+                        result(.failure(MyError.network))
+                    }
+        }
     }
 }

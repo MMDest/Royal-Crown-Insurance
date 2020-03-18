@@ -36,7 +36,6 @@ class AboutRoyalAssistViewController: CustomNavigationBarVC, WKUIDelegate {
         }
     }
     override func viewDidAppear(_ animated: Bool) {
-        sleep(1)
         navigationItem.title = "About royal assist"
         webView.loadHTMLString(self.aboutRoyal, baseURL: nil)
     }

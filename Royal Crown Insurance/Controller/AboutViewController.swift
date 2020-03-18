@@ -9,19 +9,15 @@
 import UIKit
 
 class AboutViewController: CustomNavigationBarVC {
-
     @IBOutlet weak var collectionView: UICollectionView!
-
     let itemMenuArray: [Menu] = [
         Menu(name: "ABOUT US", imageName: "about_us_image"),
         Menu(name: "BRANCHES", imageName: "brances_image"),
         Menu(name: "E-NSURED", imageName: "ensured_image")
     ]
-
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
     override func viewWillAppear(_ animated: Bool) {
         collectionView.dataSource = self
         collectionView.delegate  = self

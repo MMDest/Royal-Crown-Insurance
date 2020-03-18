@@ -48,9 +48,9 @@ extension RoyalAssistViewController: UICollectionViewDataSource, UICollectionVie
         case "REPORT AN ACCIDENT":
             self.performSegue(withIdentifier: "reportAnAccidentVC", sender: nil)
         case "MAKE A CALL":
-            let url = NSURL(string: "tel://77777773")!
-            if UIApplication.shared.canOpenURL(url as URL) {
-                UIApplication.shared.open(url as URL)
+            let url = URL(string: "tel://77777773")!
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url )
             }
         case "ABOUT ROYAL ASSIST":
             self.performSegue(withIdentifier: "aboutRoyalAssistVC", sender: nil)
@@ -63,6 +63,6 @@ extension RoyalAssistViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: collectionView.frame.height / 3 - 10)
+        return CGSize(width: view.frame.width, height: (collectionView.frame.height - 10) / 3)
     }
 }

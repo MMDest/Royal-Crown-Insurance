@@ -25,20 +25,20 @@ class ListServicesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        tableView.rowHeight = tableView.frame.height / 8
         titleLabel.text = typeServices
         navigationItem.titleView = UIImageView(image: UIImage(named: "red_logo_icon"))
     }
     override func viewDidAppear(_ animated: Bool) {
         request()
         sleep(1)
-        SVProgressHUD.dismiss()
         tableView.reloadData()
     }
     fileprivate func request() {
         SVProgressHUD.show()
         print(typeRequest)
         networkManager.getServices(aboutUrl: typeRequest) { result in
+            SVProgressHUD.dismiss()
             switch result {
             case .success(let value) :
                 print(value)
