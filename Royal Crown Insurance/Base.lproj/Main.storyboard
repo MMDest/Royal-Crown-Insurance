@@ -157,6 +157,75 @@
             </objects>
             <point key="canvasLocation" x="1982.608695652174" y="493.52678571428567"/>
         </scene>
+        <!--Instructions View Controller-->
+        <scene sceneID="gFD-iG-aQN">
+            <objects>
+                <viewController id="bqK-rO-afz" customClass="InstructionsViewController" customModule="Royal_Crown" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oGL-eO-zBZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="xO3-Gj-nqp">
+                                <rect key="frame" x="0.0" y="138" width="414" height="51"/>
+                                <color key="backgroundColor" red="0.18823529410000001" green="0.16862745100000001" blue="0.50196078430000002" alpha="0.69863013698630139" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="rd1-yT-w6b"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                </segments>
+                                <color key="selectedSegmentTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="changeTitle:" destination="bqK-rO-afz" eventType="valueChanged" id="dqT-dk-P8y"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GOL-WZ-8Je">
+                                <rect key="frame" x="0.0" y="88" width="414" height="50"/>
+                                <color key="backgroundColor" red="0.18823529410000001" green="0.16862745100000001" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Kp5-de-geX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Isd-Sa-kfY">
+                                <rect key="frame" x="0.0" y="188" width="414" height="674"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="lKN-Fa-XgC" firstAttribute="trailing" secondItem="GOL-WZ-8Je" secondAttribute="trailing" id="2Ot-3n-HLV"/>
+                            <constraint firstItem="xO3-Gj-nqp" firstAttribute="leading" secondItem="lKN-Fa-XgC" secondAttribute="leading" id="2P0-hh-rnG"/>
+                            <constraint firstItem="xO3-Gj-nqp" firstAttribute="top" secondItem="GOL-WZ-8Je" secondAttribute="bottom" id="7Ad-hH-97a"/>
+                            <constraint firstItem="Isd-Sa-kfY" firstAttribute="leading" secondItem="lKN-Fa-XgC" secondAttribute="leading" id="G16-fX-AOe"/>
+                            <constraint firstItem="GOL-WZ-8Je" firstAttribute="top" secondItem="lKN-Fa-XgC" secondAttribute="top" id="KVX-pL-zZS"/>
+                            <constraint firstItem="Isd-Sa-kfY" firstAttribute="trailing" secondItem="lKN-Fa-XgC" secondAttribute="trailing" id="P4X-J9-ZIN"/>
+                            <constraint firstItem="Isd-Sa-kfY" firstAttribute="bottom" secondItem="lKN-Fa-XgC" secondAttribute="bottom" id="PIF-Hi-XUy"/>
+                            <constraint firstItem="Isd-Sa-kfY" firstAttribute="top" secondItem="xO3-Gj-nqp" secondAttribute="bottom" id="hAl-yj-xne"/>
+                            <constraint firstItem="xO3-Gj-nqp" firstAttribute="trailing" secondItem="lKN-Fa-XgC" secondAttribute="trailing" id="iGI-87-fib"/>
+                            <constraint firstItem="xO3-Gj-nqp" firstAttribute="top" secondItem="GOL-WZ-8Je" secondAttribute="bottom" id="k3p-MR-cs5"/>
+                            <constraint firstItem="GOL-WZ-8Je" firstAttribute="leading" secondItem="lKN-Fa-XgC" secondAttribute="leading" id="kc8-9k-8rd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="lKN-Fa-XgC"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="XIq-4K-wgO"/>
+                    <connections>
+                        <outlet property="instructionTitle" destination="GOL-WZ-8Je" id="o42-Zg-G05"/>
+                        <outlet property="tabTitle" destination="xO3-Gj-nqp" id="AmV-Fy-VSI"/>
+                        <outlet property="webView" destination="Isd-Sa-kfY" id="oNP-bi-k8p"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kfH-MR-p14" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3402.898550724638" y="-556.47321428571422"/>
+        </scene>
         <!--List Services View Controller-->
         <scene sceneID="NUR-53-sT4">
             <objects>
@@ -235,14 +304,55 @@
                     <view key="view" contentMode="scaleToFill" id="61Q-4U-H5g">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OAb-Ov-WDn">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="infoCell" textLabel="yit-Cj-fcm" style="IBUITableViewCellStyleDefault" id="Gnp-Nk-RgL">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="47.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Gnp-Nk-RgL" id="Lf6-PF-c8f">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="47.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yit-Cj-fcm">
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="47.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="bqK-rO-afz" kind="show" identifier="showDetailsVC" id="dH4-Rh-Aas"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="exx-7U-Rtm" id="yvT-Lw-eJV"/>
+                                    <outlet property="delegate" destination="exx-7U-Rtm" id="JxD-Tz-1Nm"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="OAb-Ov-WDn" firstAttribute="trailing" secondItem="ZWm-4U-ONL" secondAttribute="trailing" id="5eT-PB-i6r"/>
+                            <constraint firstItem="OAb-Ov-WDn" firstAttribute="top" secondItem="ZWm-4U-ONL" secondAttribute="top" id="dMC-a3-BT5"/>
+                            <constraint firstItem="OAb-Ov-WDn" firstAttribute="leading" secondItem="ZWm-4U-ONL" secondAttribute="leading" id="oBv-Po-SxV"/>
+                            <constraint firstItem="OAb-Ov-WDn" firstAttribute="bottom" secondItem="ZWm-4U-ONL" secondAttribute="bottom" id="ub3-Ro-BHb"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ZWm-4U-ONL"/>
                     </view>
                     <navigationItem key="navigationItem" id="gNS-W8-6yU"/>
+                    <connections>
+                        <outlet property="tableView" destination="OAb-Ov-WDn" id="qsb-Eq-7BB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NtI-hb-mKV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1983" y="-254"/>
+            <point key="canvasLocation" x="1982.608695652174" y="-254.46428571428569"/>
         </scene>
         <!--Royal Assist View Controller-->
         <scene sceneID="1dr-OD-aaq">

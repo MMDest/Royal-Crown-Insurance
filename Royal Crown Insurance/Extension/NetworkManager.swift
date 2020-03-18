@@ -86,4 +86,30 @@ class NetworkManager
             }
         }.resume()
     }
+    func getInstructions (result: @escaping (Result<[Instruction], Error>) -> Void) {
+        guard let url = URL(string: "\(NetworkManager.url)/api/v1/accident_instructions?sort_column=title&sort_type=asc&") else {
+                   return
+               }
+               print(url)
+               URLSession.shared.dataTask(with: url) { (data, _, error) in
+                   guard let data = data else {
+                       print("not data")
+                       result(.failure(MyError.network))
+                    return
+                }
+                   print(data)
+                   guard error == nil else {
+                       print("Error")
+                    result(.failure(MyError.network))
+                    return
+                }
+                   do {
+                       let json = try JSONDecoder().decode([Instruction].self, from: data)
+                    result(.success(json))
+                   } catch let error {
+                       print("ErrorJSon")
+                    result(.failure(error))
+                   }
+               }.resume()
+    }
 }

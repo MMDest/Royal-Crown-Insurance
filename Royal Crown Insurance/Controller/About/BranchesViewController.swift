@@ -20,27 +20,30 @@ class BranchesViewController: CustomNavigationBarVC {
     var branch: [Branch]?
     var isHide = true
     let networkManager = NetworkManager()
+    fileprivate func request() {
+        SVProgressHUD.show()
+        networkManager.getBranch { result in
+            SVProgressHUD.dismiss()
+            switch result {
+            case .success(let value) :
+                self.branch = value
+            case .failure(let error) :
+                let alert = UIAlertController(title: "Error",
+                                              message: "The request tined out",
+                                              preferredStyle: .alert)
+                let okButton  = UIAlertAction(title: "OK", style: .default) { (_) in
+                    self.navigationController?.popViewController(animated: true)
+                }
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+                print(error)
+            }
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-        SVProgressHUD.show()
-        networkManager.getBranch { result in
-        SVProgressHUD.dismiss()
-        switch result {
-        case .success(let value) :
-            self.branch = value
-        case .failure(let error) :
-            let alert = UIAlertController(title: "Error",
-            message: "The request tined out",
-            preferredStyle: .alert)
-            let okButton  = UIAlertAction(title: "OK", style: .default) { (_) in
-                self.navigationController?.popViewController(animated: true)
-            }
-            alert.addAction(okButton)
-            self.present(alert, animated: true, completion: nil)
-            print(error)
-            }
-        }
+        request()
         navigationItem.title = "Branches"
         self.itemView.transform = self.itemView.transform.translatedBy( x: 0.0, y: 140.0)
         titleLabel.text = ""
